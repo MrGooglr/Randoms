@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Random Gradient Generator</title>
+		<link rel="stylesheet" href="css/styleRandomColors.css"/>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="proper"><h1 id="color1">#E76341</h1><h1>----></h1><h1 id="color2">#E89341</h1></div>
+			<button id="change" type="button">Get New Gradient</button>
+		</div>
+		
+		<script rel="javascript">
+			
+			var btn = document.getElementById('change');
+			var text1 = document.getElementById('color1');
+			var text2 = document.getElementById('color2');
+			
+			var colorGenerator = function(){
+					newColor1 = '#' + (Math.random()*0xFFFFFF<<0).toString(16);
+					console.log(newColor1.length);
+					newColor2 = '#' + (Math.random()*0xFFFFFF<<0).toString(16);
+					console.log(newColor2.length);
+					if((newColor1.length < 7) && (newColor2.length < 7)){
+						colorGenerator();
+					}
+			}
+			
+			btn.addEventListener('click', function(){
+				colorGenerator();
+				
+				document.body.style.background = 'linear-gradient(to bottom left,'+newColor1+','+newColor2+')';
+				btn.style.color = newColor1;
+				text1.innerText = newColor1;
+				text2.innerText = newColor2;
+			});
+			
+		</script>
+	</body>
+</html>
